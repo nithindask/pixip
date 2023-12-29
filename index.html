@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Text+Me+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+    <title>PixIP</title>
+    <style>
+        body {
+            font-family: 'Bungee';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+
+        #ipContainer {
+            text-align: center;
+        }
+
+        #ipAddress {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #a1eebd;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        /* Media query for mobile devices */
+        @media only screen and (max-width: 600px) {
+            #ipAddress {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="ipContainer">
+        <p id="ipAddress">Loading...</p>
+    </div>
+
+    <script>
+        function getIPAddress() {
+            const ipAddressElement = document.getElementById('ipAddress');
+            fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const ipAddress = data.ip;
+                    ipAddressElement.innerHTML = `<a href="https://instagram.com/charle_404" style="text-decoration: none; color: #a1eebd;">YOUR IP :<br>${ipAddress}</a>`;
+                    ipAddressElement.addEventListener('click', function() {
+                        window.location.href = 'https://instagram.com/charle_404';
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    ipAddressElement.innerHTML = '<a href="https://instagram.com/charle_404" style="text-decoration: none; color: #a1eebd;">ERROR</a>';
+                });
+        }
+        getIPAddress();
+    </script>
+</body>
+</html>
